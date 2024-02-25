@@ -1,0 +1,8 @@
+name: PSACore
+version: '1.0.0'
+main: dev.ev1dent.psacore.PSACore
+api-version: '1.20'
+prefix: [PSA]
+commands:
+  worlds:
+
