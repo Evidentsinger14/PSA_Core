@@ -2,7 +2,12 @@ name: PSACore
 version: '${project.version}'
 main: dev.ev1dent.psacore.PSACore
 api-version: '1.20'
-prefix: [PSA]
+prefix: PSA
 commands:
   worlds:
-
+    description: "opens world selector GUI."
+  psa:
+    description: "Base command for plugin."
+permissions:
+  psacore.auto-open:
+    default: true

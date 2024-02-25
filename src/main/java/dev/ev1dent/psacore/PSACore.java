@@ -1,6 +1,7 @@
 package dev.ev1dent.psacore;
 
 import dev.ev1dent.psacore.commands.CommandPSA;
+import dev.ev1dent.psacore.commands.CommandWorlds;
 import dev.ev1dent.psacore.events.InventoryCloseListener;
 import dev.ev1dent.psacore.events.PlayerLoginListener;
 import dev.ev1dent.psacore.utilities.InventoryManager;
@@ -23,7 +24,8 @@ public final class PSACore extends JavaPlugin {
     }
 
     public void registerCommands(){
-        this.getCommand("worlds").setExecutor(new CommandPSA());
+        this.getCommand("worlds").setExecutor(new CommandWorlds());
+        this.getCommand("psa").setExecutor(new CommandPSA());
     }
     public void registerEvents(){
         this.getServer().getPluginManager().registerEvents(new InventoryManager(), this);

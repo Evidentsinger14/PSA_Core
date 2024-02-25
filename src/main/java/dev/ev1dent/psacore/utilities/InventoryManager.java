@@ -19,6 +19,7 @@ public class InventoryManager implements Listener {
     Utils Utils = new Utils();
     public Inventory worldSwitchGUI(Player player){
         Inventory gui = Bukkit.createInventory(player, 27, Utils.formatMM("<dark_purple>World Switcher"));
+        gui.setItem(4, spawnItem());
         gui.setItem(11, simptopiaItem());
         gui.setItem(13, lolSimpsItem());
         gui.setItem(15, snapshotItem());
@@ -57,17 +58,32 @@ public class InventoryManager implements Listener {
         item.setItemMeta(meta);
         return item;
     }
+    public ItemStack spawnItem(){
+        ItemStack item = new ItemStack(Material.BARRIER);
+        ItemMeta meta = item.getItemMeta();
+        meta.displayName(Utils.formatMM("<white>Spawn"));
+        List<Component> lore = new ArrayList<>();
+        lore.add(Utils.formatMM("<white>Head Back to spawn!"));
+        meta.lore(lore);
+        item.setItemMeta(meta);
+        return item;
+    }
 
     @EventHandler
     public void onItemClick(InventoryClickEvent event){
         ItemStack item = event.getCurrentItem();
         if(item == null) return;
-        if(item.equals(simptopiaItem())){
+        if(item.equals(spawnItem())) {
+            Location loc = new Location(Bukkit.getWorld("world"), 9.5, 66, 19.5, 0, -10);
+            event.getWhoClicked().sendMessage(Utils.formatMM("<green>Teleporting back to Spawn..."));
+            event.getWhoClicked().teleportAsync(loc);
+            event.setCancelled(true);
+
+        } else if(item.equals(simptopiaItem())){
             Location loc = new Location(Bukkit.getWorld("simptopia"), -45, 69, -37.5, -90, 0);
             event.getWhoClicked().sendMessage(Utils.formatMM("<green>Teleporting to Simptopia World..."));
             event.getWhoClicked().teleportAsync(loc);
             event.setCancelled(true);
-
 
         } else if (item.equals(lolSimpsItem())){
             Location loc = new Location(Bukkit.getWorld("lolsimps"), 327, 64, -1547, 90, -15);
@@ -86,7 +102,9 @@ public class InventoryManager implements Listener {
 
     public boolean isSelector(Inventory inventory){
         boolean isSelector = true;
-        if(!inventory.contains(lolSimpsItem())){
+        if(!inventory.contains(spawnItem())) {
+            isSelector = false;
+        } else if(!inventory.contains(lolSimpsItem())){
             isSelector = false;
         } else if (!inventory.contains(snapshotItem())) {
             isSelector = false;
