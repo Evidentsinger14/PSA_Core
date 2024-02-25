@@ -30,7 +30,7 @@ public class InventoryManager implements Listener {
         ItemMeta meta = item.getItemMeta();
         meta.displayName(Utils.formatMM("<dark_purple>Simptopia"));
         List<Component> lore = new ArrayList<>();
-        lore.add(Utils.formatMM("<white>Retied Stream SMP for https://twitch.tv/kenna!"));
+        lore.add(Utils.formatMM("<white>Retired Stream SMP for https://twitch.tv/kenna!"));
         meta.lore(lore);
         item.setItemMeta(meta);
         return item;
