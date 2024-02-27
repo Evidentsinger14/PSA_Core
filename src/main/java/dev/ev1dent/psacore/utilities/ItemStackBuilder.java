@@ -1,5 +1,6 @@
 package dev.ev1dent.psacore.utilities;
 
+import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -12,11 +13,7 @@ public class ItemStackBuilder {
 
     private Material material;
     private String displayName;
-    private final List<String> lore;
-
-    public ItemStackBuilder() {
-        lore = new ArrayList<>();
-    }
+    private String loreLine;
 
     public ItemStackBuilder withMaterial(Material material) {
         this.material = material;
@@ -28,8 +25,8 @@ public class ItemStackBuilder {
         return this;
     }
 
-    public ItemStackBuilder addLoreLine(String line) {
-        this.lore.add(line);
+    public ItemStackBuilder addLore(String line) {
+        this.loreLine = line;
         return this;
     }
 
@@ -38,7 +35,9 @@ public class ItemStackBuilder {
         ItemMeta meta = itemStack.getItemMeta();
         if (meta != null) {
             meta.displayName(Utils.formatMM(displayName));
-            meta.lore().add(Utils.formatMM(lore.toString()));
+            List<Component> lore = new ArrayList<>();
+            lore.add(Utils.formatMM(loreLine));
+            meta.lore(lore);
             itemStack.setItemMeta(meta);
         }
         return itemStack;
