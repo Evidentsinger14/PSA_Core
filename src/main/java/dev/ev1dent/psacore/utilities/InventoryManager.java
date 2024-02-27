@@ -23,7 +23,7 @@ public class InventoryManager implements Listener {
 
     ItemStack simptopiaItem = new ItemStackBuilder()
             .withMaterial(Material.PURPLE_WOOL)
-            .withDisplayName("<purple>Simptopia")
+            .withDisplayName("<dark_purple>Simptopia")
             .addLore("<white>Retired Stream SMP for https://twitch.tv/kenna!")
             .build();
 
