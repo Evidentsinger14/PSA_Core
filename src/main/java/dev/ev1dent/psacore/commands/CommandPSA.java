@@ -1,7 +1,9 @@
 package dev.ev1dent.psacore.commands;
 
 import dev.ev1dent.psacore.utilities.Utils;
-import org.bukkit.Bukkit;
+import net.luckperms.api.LuckPerms;
+import net.luckperms.api.model.user.User;
+import net.luckperms.api.node.Node;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
 import org.bukkit.command.CommandSender;
@@ -9,6 +11,10 @@ import org.bukkit.entity.Player;
 import org.jetbrains.annotations.NotNull;
 
 public class CommandPSA implements CommandExecutor {
+    private final LuckPerms luckPerms;
+    public CommandPSA(LuckPerms luckPerms){
+        this.luckPerms =  luckPerms;
+    }
     @Override
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String s, @NotNull String[] args) {
         Utils Utils = new Utils();
@@ -23,20 +29,19 @@ public class CommandPSA implements CommandExecutor {
 
             case "auto" -> {
                 String val = args[1];
+                Player player = (Player) sender;
                 switch (val) {
                     case "on" -> {
-                        Player player = (Player) sender;
-                        Bukkit.getServer().dispatchCommand(
-                                Bukkit.getConsoleSender(),
-                                String.format("lp user %s permission unsettemp psacore.auto-open", player.getUniqueId())
-                        );
+                        Node node = Node.builder("psacore.auto-open").value(true).build();
+                        this.luckPerms.getUserManager().modifyUser(player.getUniqueId(), (User user) -> {
+                            user.data().add(node);
+                        });
                     }
                     case "off" -> {
-                        Player player = (Player) sender;
-                        Bukkit.getServer().dispatchCommand(
-                                Bukkit.getConsoleSender(),
-                                String.format("lp user %s permission settemp psacore.auto-open false 3d", player.getUniqueId())
-                        );
+                        Node node = Node.builder("psacore.auto-open").value(false).build();
+                        this.luckPerms.getUserManager().modifyUser(player.getUniqueId(), (User user) -> {
+                            user.data().add(node);
+                        });
                     }
                     default -> {
                     }
