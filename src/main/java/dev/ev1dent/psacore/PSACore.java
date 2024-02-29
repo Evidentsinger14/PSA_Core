@@ -4,6 +4,7 @@ import dev.ev1dent.psacore.commands.CommandPSA;
 import dev.ev1dent.psacore.commands.CommandWorlds;
 import dev.ev1dent.psacore.events.InventoryCloseListener;
 import dev.ev1dent.psacore.events.PlayerLoginListener;
+import dev.ev1dent.psacore.utilities.ConfigurationManager;
 import dev.ev1dent.psacore.utilities.InventoryManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
@@ -13,6 +14,7 @@ public final class PSACore extends JavaPlugin {
     @Override
     public void onEnable() {
         plugin = this;
+        new ConfigurationManager(this);
         registerEvents();
         registerCommands();
 
