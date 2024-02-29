@@ -22,27 +22,27 @@ public class InventoryManager implements Listener {
     }
 
     ItemStack simptopiaItem = new ItemStackBuilder()
-            .withMaterial(Material.PURPLE_WOOL)
-            .withDisplayName("<dark_purple>Simptopia")
-            .addLore("<white>Retired Stream SMP for https://twitch.tv/kenna!")
+            .setMaterial(Material.PURPLE_WOOL)
+            .setDisplayName("<dark_purple>Simptopia")
+            .setLore("<white>Retired Stream SMP for https://twitch.tv/kenna!")
             .build();
 
     ItemStack lolSimpsItem = new ItemStackBuilder()
-            .withMaterial(Material.CYAN_WOOL)
-            .withDisplayName("<aqua>lolsimps SMP")
-            .addLore("<white>Retired Stream SMP for https://twitch.tv/kenna!")
+            .setMaterial(Material.CYAN_WOOL)
+            .setDisplayName("<aqua>lolsimps SMP")
+            .setLore("<white>Retired Stream SMP for https://twitch.tv/kenna!")
             .build();
 
     ItemStack snapshotItem = new ItemStackBuilder()
-            .withMaterial(Material.BLUE_WOOL)
-            .withDisplayName("<blue>1.17 Snapshot SMP")
-            .addLore("<white>1.17 snapshot smp server for Evidents Friends!")
+            .setMaterial(Material.BLUE_WOOL)
+            .setDisplayName("<blue>1.17 Snapshot SMP")
+            .setLore("<white>1.17 snapshot smp server for Evidents Friends!")
             .build();
 
     ItemStack spawnItem = new ItemStackBuilder()
-            .withMaterial(Material.BARRIER)
-            .withDisplayName("<white>Spawn")
-            .addLore("<white>Head back to spawn!")
+            .setMaterial(Material.BARRIER)
+            .setDisplayName("<white>Spawn")
+            .setLore("<white>Head back to spawn!")
             .build();
 
     @EventHandler

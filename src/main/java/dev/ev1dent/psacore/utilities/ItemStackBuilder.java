@@ -15,17 +15,17 @@ public class ItemStackBuilder {
     private String displayName;
     private String loreLine;
 
-    public ItemStackBuilder withMaterial(Material material) {
+    public ItemStackBuilder setMaterial(Material material) {
         this.material = material;
         return this;
     }
 
-    public ItemStackBuilder withDisplayName(String displayName) {
+    public ItemStackBuilder setDisplayName(String displayName) {
         this.displayName = displayName;
         return this;
     }
 
-    public ItemStackBuilder addLore(String line) {
+    public ItemStackBuilder setLore(String line) {
         this.loreLine = line;
         return this;
     }
